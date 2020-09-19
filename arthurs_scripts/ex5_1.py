@@ -1,7 +1,8 @@
 #!/usr/bin/python3
+###5b
 import sys
 dev = input('Etner device name: ')
-param = input('Enter parameter: ')
+#param = input('Enter parameter lkeys: ')
 london_co = {
 	    "r1": {
 	       "location": "21 New Globe Walk",
@@ -9,14 +10,14 @@ london_co = {
 	       "model": "4451",
 	       "ios": "15.4",
 	       "ip": "10.255.0.1",
-								        },
+		    },
 	    "r2": {
                "location": "21 New Globe Walk",
                "vendor": "Cisco",
                "model": "4451",
                "ios": "15.4",
                "ip": "10.255.0.2",
-									    },
+		    },
 	    "sw1": {
                "location": "21 New Globe Walk",
                "vendor": "Cisco",
@@ -25,9 +26,11 @@ london_co = {
                "ip": "10.255.0.101",
                "vlans": "10,20,30",
                "routing": True,
-											        },
+		    },
 	    }
 
-#print('\n'.join(london_co['r1'].values()))
-#print(london_co[dev])
+lkeys = ', '.join(london_co[dev].keys()) 
+#print(lkeys)
+print('Enter parameter: ', lkeys)
+param = input()
 print(london_co[dev][param])
