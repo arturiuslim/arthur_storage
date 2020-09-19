@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
-in1 = input('Etner device name: ')
+dev = input('Etner device name: ')
+param = input('Enter parameter: ')
 london_co = {
 	    "r1": {
 	       "location": "21 New Globe Walk",
@@ -28,4 +29,5 @@ london_co = {
 	    }
 
 #print('\n'.join(london_co['r1'].values()))
-print(london_co[in1].items())
+#print(london_co[dev])
+print(london_co[dev][param])
