@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 ###5b
 import sys
-dev = input('Etner device name: ')
-#param = input('Enter parameter lkeys: ')
 london_co = {
 	    "r1": {
 	       "location": "21 New Globe Walk",
@@ -29,8 +27,11 @@ london_co = {
 		    },
 	    }
 
-lkeys = ', '.join(london_co[dev].keys()) 
-#print(lkeys)
-print('Enter parameter: ', lkeys)
+dev = input('Etner device name: ')
+cp_lndn = london_co.copy()[dev]
+lkeys = ', '.join(cp_lndn.keys()) 
+print('Enter parameter: ', lkeys, '\n')
 param = input()
-print(london_co[dev][param])
+val = cp_lndn.setdefault(param, 'Wrong key!')
+print('\n' + '-' * 30)
+print(val)
