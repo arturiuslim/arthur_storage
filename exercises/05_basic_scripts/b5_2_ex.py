@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-import sys
+from sys import argv
 
-addr = input('Please type an ip address: ')
-
+#addr = input('Please type an ip address: ')
+addr = argv[1]
 ip = addr.split('/')[0].split('.')
 mask = int(addr.split('/')[1])
 bmask =('{:0<32}'.format('1' * mask))
