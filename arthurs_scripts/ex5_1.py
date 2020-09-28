@@ -31,7 +31,7 @@ dev = input('Etner device name: ')
 cp_lndn = london_co.copy()[dev]
 lkeys = ', '.join(cp_lndn.keys()) 
 print('Enter parameter: ', lkeys, '\n')
-param = input()
+param = input(': ')
 val = cp_lndn.setdefault(param, 'Wrong key!')
 print('\n' + '-' * 30)
 print(val)
