@@ -19,10 +19,17 @@ int_tmpl = {
 	'access': access_template,
 	'trunk': trunk_template
 	}
+int_type = {
+	'access': "Enter VLAN number: ",
+	'trunk': "Enter VLANs range: "
+	}
+
 #------------------------------------------------------
 inpt = input('Type of interface, access or trunk: ')
-vlan = input('Type VLAN number: ')
-intnum = input('Type interface: ')
+print(int_type[inpt])
+vlan = input()
+intnum = input('Interface number: ')
+
 print('\n' + '-' * 30 )
 
 intf = int_tmpl[inpt]
