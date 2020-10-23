@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+from sys import argv
+ignore = ["duplex", "alias", "Current", "configuration"]
+
+i_file = argv[1]
+o_file = argv[2]
+with open(i_file) as config_file, open(o_file, 'w') as dest:
+	for lines in config_file:
+		list1 = lines.split()
+		if not set(ignore).intersection(set(list1)) and not lines.startswith('!'):
+			dest.write(lines)
+#			print(lines.rstrip())
+				
+
