@@ -1,0 +1,44 @@
+ip = '10.1.1.1'
+
+result = []
+
+for octet in ip.split('.'):
+    result.append(int(octet))
+//////////////or this way///////////////////////
+
+result = [int(octet) for octet in ip.split('.')]
+
+//////////////////////////////////////////
+items = [10, 'a', 40, 's', 100]
+
+ for item in items:
+    ...:     if type(item) == int:
+    ...:         print(item)
+////////// or //////////////
+[item for item in items if type(item) == int
+
+
+///////////////////////////////////////
+for device in london_co:
+    for param in london_co[device]:
+        if param == key:
+            print(london_co[device][param])
+
+////////////// or //////////////////////
+
+
+//////////////for sets///////////////////////
+
+items = ['10', 'a', '40', 'g', '100', '10']
+
+ {int(item) for item in items if item.isdigit()}
+
+
+///////////////////////////
+nums = list(range(1, 21))
+{num: num**2 for num in nums}
+
+
+
+[london_co[device][key] for device in london_co]
+
