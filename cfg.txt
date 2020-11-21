@@ -1,0 +1,12 @@
+enable
+conf t
+no inter Gi0/0/0.300
+no inter Gi0/0/0.301
+no inter Gi0/0/0.302
+int range gi0/0/0-2
+ channel-group 1 mode active
+interface port-channel1.300
+ encapsulation dot1Q 300
+ vrf forwarding Management
+ ip address 10.16.19.35 255.255.255.248
+

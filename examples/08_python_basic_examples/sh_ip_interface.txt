@@ -78,7 +78,6 @@ Ethernet0/2 is up, line protocol is up
   Internet address is 19.1.1.1/24
   Broadcast address is 255.255.255.255
   Address determined by non-volatile memory
-  MTU is 1500 bytes
   Helper address is not set
   Directed broadcast forwarding is disabled
   Multicast reserved groups joined: 224.0.0.5 224.0.0.10 224.0.0.6
