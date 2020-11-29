@@ -1,5 +1,6 @@
 import pytest
-from check_password_example.py import check_password
+import os
+from check_password_example import check_password
 #check_password_example.py
 
 def test_check_password_func():

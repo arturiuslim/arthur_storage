@@ -7,7 +7,3 @@ def check_password(username, password, password_length=8,
 	else:
 		return True
 	
-#def test_check_password_func():
-#	assert check_password('user', '12345678') == True, "For user USER this password is correct"
-#	assert check_password('user', '12345678', password_length=10) == False
-#	assert check_password('user', '12345678user') == False
