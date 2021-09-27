@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#Adds descriptions to the interface range on juniper switch.
 from sys import argv
 i_file = argv[1]
 j = input('Etner 1-st interface: ')
