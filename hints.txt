@@ -1,0 +1,5 @@
+//merge 2 lists into 1
+import itertools
+myflatlist = list(itertools.chain(*mylist))
+
+
