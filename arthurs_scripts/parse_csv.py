@@ -18,7 +18,7 @@ def tmpdict(indict):
 	loc_dict = dict(zip(loc_so, loc_ro))
 	nyord_loc = [random.choice(list(loc_dict))]
 	return (loc_dict, loc_ro, nyord_loc)
-
+#####################################################################
 
 def dictMenu(my_list,my_word):
 #Menu
@@ -36,6 +36,8 @@ def dictMenu(my_list,my_word):
 			if(optionsChoice == svensk.get(my_word[0])):
 				print(optionsChoice)
 				print("det stämmer")
+				my_list,my_word,tmp = tmpdict(svensk)
+				dictMenu(my_word,tmp)
 			else:
 				print("det fel")
 
