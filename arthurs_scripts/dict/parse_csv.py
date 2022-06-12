@@ -2,9 +2,11 @@
 import csv
 import random
 from simple_term_menu import TerminalMenu
+from sys import argv
 
+infile = argv[1]
 svensk = {}
-with open('dict.csv', 'r') as csv_file:
+with open(infile, 'r') as csv_file:
 	svensk = dict(filter(None, csv.reader(csv_file)))
 
 #######################Function block####################################
