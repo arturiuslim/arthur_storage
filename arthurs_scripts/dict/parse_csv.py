@@ -44,6 +44,10 @@ def dictMenu(my_list,my_word):
 
 ###########################################################################
 for i in range(10):
+	gamla_ord = []
 	newdict,ro,nyord = tmpdict(svensk)
-	dictMenu(ro,nyord)			
+	if newdict != gamla_ord:
+		dictMenu(ro,nyord)			
+	else:
+		newdict,ro,nyord = tmpdict(svensk)
 
