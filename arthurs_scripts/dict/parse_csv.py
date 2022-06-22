@@ -27,7 +27,7 @@ def dictMenu(my_list,my_word):
 	options = [my_list[0], my_list[1], my_list[2], my_list[3], "[q] Quit"]
 	mainMenu = TerminalMenu(options)
 	quitting = False
-	print(my_word)
+	print('\n', my_word, '\n')
 	while quitting == False:
 		optionsIndex = 	mainMenu.show()
 		optionsChoice = options[optionsIndex]
@@ -36,11 +36,11 @@ def dictMenu(my_list,my_word):
 			quitting = True
 		else:
 			if(optionsChoice == svensk.get(my_word[0])):
-				print(optionsChoice)
-				print("det stämmer")
+				print(my_word, '\t', optionsChoice, '\n')
+				print('\t', "det stämmer", '\n')
 				quitting = True
 			else:
-				print("det fel")
+				print('\t', "det fel", '\n')
 
 ###########################################################################
 for i in range(10):
