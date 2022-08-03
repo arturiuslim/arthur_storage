@@ -13,13 +13,38 @@ with open(infile, 'r') as csv_file:
 
 def tmpdict(indict):
 #Function creates temporal dictionary with 4 words
-	loc_so = [random.choice(list(indict)) for i in range(4)]
+	not_repeat = False
+	while not_repeat == False:
+		loc_so = [random.choice(list(indict)) for i in range(4)]
+		if len(set(loc_so)) == 4:
+			not_repeat = True
 	loc_ro = []
 	for j in loc_so:
 		loc_ro.append(indict.get(j))
 	loc_dict = dict(zip(loc_so, loc_ro))
 	nyord_loc = [random.choice(list(loc_dict))]
 	return (loc_dict, loc_ro, nyord_loc)
+#####################################################################
+def ordlist(indict):
+	not_repeat = False
+	while not_repeat == False:
+		loc_lst = [random.choice(list(indict))for i in range(10)]
+		if len(set(loc_lst)) == 10:
+			not_repeat = True
+	return(loc_lst)
+#####################################################################
+def tmplist(inord,indict):
+	not_repeat = False
+	loc_trs = []
+	while not_repeat == False:
+		loc_lst = [random.choice(list(indict)) for i in range(3)]
+		if len(set(loc_lst)) == 3:
+			not_repeat = True
+	for i in loc_lst:
+		loc_trs.append(indict.get(i))
+	loc_trs.append(indict.get(inord))
+	random.shuffle(loc_trs)
+	return(loc_trs)
 #####################################################################
 
 def dictMenu(my_list,my_word):
@@ -35,7 +60,8 @@ def dictMenu(my_list,my_word):
 		if(optionsChoice == "[q] Quit"):
 			quitting = True
 		else:
-			if(optionsChoice == svensk.get(my_word[0])):
+			print(svensk.get(my_word))
+			if(optionsChoice == svensk.get(my_word)):
 				print(my_word, '\t', optionsChoice, '\n')
 				print('\t', "det stämmer", '\n')
 				quitting = True
@@ -43,11 +69,18 @@ def dictMenu(my_list,my_word):
 				print('\t', "det fel", '\n')
 
 ###########################################################################
-for i in range(10):
-	gamla_ord = []
-	newdict,ro,nyord = tmpdict(svensk)
-	if newdict != gamla_ord:
-		dictMenu(ro,nyord)			
-	else:
-		newdict,ro,nyord = tmpdict(svensk)
+chk_now = []
+chk_lst = ordlist(svensk)
+for i in chk_lst:
+	chk_now = tmplist(i,svensk)
+	dictMenu(chk_now,i)
+#for i in range(10):
+#	gamla_ord = []
+#	newdict,ro,nyord = tmpdict(svensk)
+#	if newdict != gamla_ord:
+#		print(i)
+#		dictMenu(ro,nyord)			
+#	else:
+#		newdict,ro,nyord = tmpdict(svensk)
+
 
