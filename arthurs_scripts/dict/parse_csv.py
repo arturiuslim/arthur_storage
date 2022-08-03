@@ -20,12 +20,12 @@ def ordlist(indict):
 	return(loc_lst)
 #####################################################################
 def tmplist(inord,indict):
-	not_repeat = False
+	not_rpt = False
 	loc_trs = []
-	while not_repeat == False:
+	while not_rpt == False:
 		loc_lst = [random.choice(list(indict)) for i in range(3)]
-		if len(set(loc_lst)) == 3:
-			not_repeat = True
+		if len(set(loc_lst)) == 3 and inord not in loc_lst:
+			not_rpt = True
 	for i in loc_lst:
 		loc_trs.append(indict.get(i))
 	loc_trs.append(indict.get(inord))
