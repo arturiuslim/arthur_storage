@@ -2,4 +2,9 @@
 import itertools
 myflatlist = list(itertools.chain(*mylist))
 
+/// in case of "git error: Updating the following directories would lose untracked files in it" when doing git pull
+git stash --include-untracked
+git reset --hard
+git clean -fd
 
+git pull

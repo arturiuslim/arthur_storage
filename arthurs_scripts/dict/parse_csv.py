@@ -11,20 +11,6 @@ with open(infile, 'r') as csv_file:
 
 #######################Function block####################################
 
-def tmpdict(indict):
-#Function creates temporal dictionary with 4 words
-	not_repeat = False
-	while not_repeat == False:
-		loc_so = [random.choice(list(indict)) for i in range(4)]
-		if len(set(loc_so)) == 4:
-			not_repeat = True
-	loc_ro = []
-	for j in loc_so:
-		loc_ro.append(indict.get(j))
-	loc_dict = dict(zip(loc_so, loc_ro))
-	nyord_loc = [random.choice(list(loc_dict))]
-	return (loc_dict, loc_ro, nyord_loc)
-#####################################################################
 def ordlist(indict):
 	not_repeat = False
 	while not_repeat == False:
@@ -74,13 +60,5 @@ chk_lst = ordlist(svensk)
 for i in chk_lst:
 	chk_now = tmplist(i,svensk)
 	dictMenu(chk_now,i)
-#for i in range(10):
-#	gamla_ord = []
-#	newdict,ro,nyord = tmpdict(svensk)
-#	if newdict != gamla_ord:
-#		print(i)
-#		dictMenu(ro,nyord)			
-#	else:
-#		newdict,ro,nyord = tmpdict(svensk)
 
 
