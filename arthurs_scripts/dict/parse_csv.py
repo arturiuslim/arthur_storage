@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import csv
 import random
+import os
 from simple_term_menu import TerminalMenu
 from sys import argv
 
@@ -37,6 +38,7 @@ def dictMenu(my_list,my_word):
 #Menu
 	options = [my_list[0], my_list[1], my_list[2], my_list[3], "[q] Quit"]
 	mainMenu = TerminalMenu(options)
+	clear = lambda: os.system('clear')
 	quitting = False
 	print('\n', my_word, '\n')
 	while quitting == False:
@@ -46,12 +48,14 @@ def dictMenu(my_list,my_word):
 		if(optionsChoice == "[q] Quit"):
 			quitting = True
 		else:
-			print(svensk.get(my_word))
 			if(optionsChoice == svensk.get(my_word)):
+				clear()
 				print(my_word, '\t', optionsChoice, '\n')
 				print('\t', "det stämmer", '\n')
 				quitting = True
 			else:
+				clear()
+				print(my_word, '\t', optionsChoice, '\n')
 				print('\t', "det fel", '\n')
 
 ###########################################################################
