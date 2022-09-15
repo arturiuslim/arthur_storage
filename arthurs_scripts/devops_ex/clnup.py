@@ -19,6 +19,6 @@ with open(fl, 'r') as f:
 			with Device(host=ip, user=lgn, passwd=psw) as dev:
 				print("-> Performig system cleanup on,", ip," please be patient")
 				fs = FS(dev)
-				fs.storage_cleanup()
+				print(fs.storage_cleanup_check())
 		except ConnectError as err:
 				print(err)
