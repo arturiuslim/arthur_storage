@@ -1,0 +1,22 @@
+---
+- name: Hello World!
+  hosts: 10.254.254.1
+  connection: ansible.netcommon.netconf 
+  gather_facts: no
+
+  vars_prompt:
+   - name: USERNAME
+     prompt: User name
+     private: no
+   - name: DEVICE_PASSWORD
+     prompt: Device password
+     private: yes
+
+  tasks:
+   - name: Get Junos device information
+     junipernetworks.junos.junos_facts:
+     register: junos_facts
+
+   - name: Print Junos facts
+     debug:
+      msg: "{{ junos_facts }}"
