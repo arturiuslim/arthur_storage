@@ -3,6 +3,7 @@ from pprint import pprint
 import time
 import re
 import socket
+from getpass import getpass
 
 def send_show_command(ip, user, password,
 		 	command,
@@ -23,7 +24,7 @@ def send_show_command(ip, user, password,
 	except socket.timeout:
 		print(f"Was not able to connect tp {ip} ")
 		return
-	except paramiko.SSHexception as error:
+	except paramiko.SSHException as error:
 		print(f"Arised error {error} on {ip}")
 		return
 
@@ -36,24 +37,41 @@ def send_show_command(ip, user, password,
 		output. = ssh.recv(max_read).decode("utf-8")
 		prompt = re.recv(r"\S+#", output).group()
 		"""
+		ssh.send("\n")
+		time.sleep(long_sleep)
+		output = ssh.recv(max_read).decode("utf-8")
+#		print("Output is: ", output)
+		prompt = re.search(r"\S+>", output).group()
+#		print("Prompt is: ", prompt)
 		ssh.send(f"{command}\n")
-		prompt = re.recv(r"\S+#", output).group()
 		output = ""
-		ssh.timeout(3)
+		ssh.settimeout(3)
 		while True:
 			time.sleep(short_sleep)
-			part = ssh.recv(100),decode("utf-f")	
-			print("="*70)
+			try:
+				part = ssh.recv(100).decode("utf-8")	
+			except socket.timeout:
+				break
+			print("/"*70)
 			print(part)
 			output += part	
-			if promt in output:
+			if prompt in output:
 				break
-		output = output.replace("\r\n", "\n")
+#		output = output.replace("\r\n", "\n")
 		return output
 
 
 if __name__ == "__main__":
-	ip_list = ["10.254.254.1", "10.10.10.1","10.254.254.2", "10.254.254.3", "10.254.254.1"]
-	for ip in ip_list:
-		out = send_show_command(ip, "eartlim", "Letmein123!", "show interface terse")
-		pprint(out, width=120)
+        u_login = input("username: ")
+        u_passwd = getpass("Password: ")
+#        ip_list = ["10.254.254.1", "10.254.254.2", "10.254.254.3", "10.254.254.1"]
+        ip_list = [ "10.254.254.3", "10.254.254.1"]
+        for ip in ip_list:
+#                out = send_show_command(ip, u_login, u_passwd, "show interfaces terse | no-more")
+                out = send_show_command(ip, u_login, u_passwd, "ping 10.254.254.1 count 5")
+                #pprint(out, width=120)
+                print("="*50)
+                print(f"Checking {ip}")
+                print(out)
+                print("="*50)
+

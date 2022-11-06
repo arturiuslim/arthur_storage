@@ -2,6 +2,7 @@ import paramiko
 from pprint import pprint
 import time
 import socket
+from getpass import getpass
 
 def send_show_command(ip, user, password,
 		 	command,
@@ -27,6 +28,9 @@ def send_show_command(ip, user, password,
 		return
 
 	with cl.invoke_shell() as ssh:
+		ssh.send("\n")
+		time.sleep(short_sleep)
+               # ssh.send("terminal length 0\n")
 		ssh.send(f"{command}\n")
 		time.sleep(long_sleep)
 		output = ssh.recv(max_read).decode("utf-8").replace("\r\n", "\n")
@@ -34,7 +38,13 @@ def send_show_command(ip, user, password,
 
 
 if __name__ == "__main__":
-	ip_list = ["10.254.254.1", "10.10.10.1","10.254.254.2", "10.254.254.3", "10.254.254.1"]
+	u_login = input("username: ")
+	u_passwd = getpass("Password: ")
+	ip_list = ["10.254.254.1", "10.254.254.2", "10.254.254.3", "10.254.254.1"]
 	for ip in ip_list:
-		out = send_show_command(ip, "eartlim", "Letmein123!", "show interface terse")
-		pprint(out, width=120)
+		out = send_show_command(ip, u_login, u_passwd, "show system alarm")
+		#pprint(out, width=120)
+		print("="*50)
+		print(f"Checking {ip}")
+		print(out)
+		print("="*50)
