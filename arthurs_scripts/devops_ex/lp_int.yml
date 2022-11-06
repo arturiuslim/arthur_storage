@@ -1,0 +1,21 @@
+---
+- name: Loop interfaces
+  hosts: Routers 
+  connection: local 
+  gather_facts: no
+
+  tasks:
+   - name: Get Junos device information
+     juniper.device.command:
+      commands: "show interface {{item}} terse"
+     loop:
+      - ge-0/0/2
+      - ge-0/0/5
+      - ge-0/0/6
+     register: response
+
+   - debug:
+      msg: "{{ item.stdout_lines }}"
+     loop: "{{ response.results }}"
+#    loop_control:
+#      label: "{{ item.invocation,module_args.host }}"

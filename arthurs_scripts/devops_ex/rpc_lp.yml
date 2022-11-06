@@ -1,0 +1,21 @@
+---
+- name: Do-until loop
+#  hosts: Routers 
+  hosts: 10.254.254.4
+  connection: local 
+  gather_facts: no
+
+  tasks:
+   - name: Wait interface up
+     juniper.device.rpc:
+       rpcs:
+        - "get-interface-information"
+       kwargs:
+        - terse: True
+          interface-name: ge-0/0/2
+     until:
+       (result.parsed_output["interface-information"]
+       ["physical-interface"]["oper-status"] == "up")
+     register: result
+     retries: 20
+     delay: 5

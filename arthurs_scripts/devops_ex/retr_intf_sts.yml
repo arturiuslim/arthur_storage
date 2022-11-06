@@ -1,0 +1,26 @@
+---
+- name: Hello World!
+  hosts: Routers 
+  connection: local 
+  gather_facts: no
+
+  vars_prompt:
+   - name: USERNAME
+     prompt: User name
+     private: no
+   - name: DEVICE_PASSWORD
+     prompt: Device password
+     private: yes
+
+  tasks:
+   - name: Get Junos device information
+     juniper.device.command:
+      user: "{{ USERNAME }}"
+      passwd: "{{ DEVICE_PASSWORD }}"
+      commands:
+       - show interface ge-0/0/[01]* terse
+     register: cmd_output
+
+   - name: Print Junos facts
+     debug:
+      msg: "{{ cmd_output.stdout_lines }}"
