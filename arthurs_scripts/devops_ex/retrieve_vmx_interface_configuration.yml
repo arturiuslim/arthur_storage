@@ -1,0 +1,17 @@
+---
+- name: Retrieve mxA commited configuration
+#  hosts: Routers 
+  hosts: 10.254.254.4
+  connection: local 
+  gather_facts: no
+
+  tasks:
+   - name: retrieve mxA commited interface configuration
+     juniper.device.config:
+       retrieve: committed
+       filter: interfaces
+     register: response
+  
+   - name: Print mxA commited interface configuration
+     debug:
+       var: response.config_lines

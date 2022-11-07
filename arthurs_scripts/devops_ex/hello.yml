@@ -1,6 +1,9 @@
 ---
 - name: Hello World!
-  hosts: 10.254.254.1
+  hosts: 
+   10.254.254.1
+   10.254.254.2
+   10.254.254.3
   connection: local 
   gather_facts: no
 
