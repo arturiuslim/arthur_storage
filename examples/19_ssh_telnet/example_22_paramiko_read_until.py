@@ -30,6 +30,7 @@ def send_show_command(ip, user, password,
 
 	with cl.invoke_shell() as ssh:
 		"""
+		#This part is for Cisco
 		ssh.send("enable\n")
 		ssh.send(f"{enable_password}\n")
 		time.sleep(short_sleep)
@@ -44,12 +45,16 @@ def send_show_command(ip, user, password,
 		prompt = re.search(r"\S+>", output).group()
 #		print("Prompt is: ", prompt)
 		ssh.send(f"{command}\n")
+		output = read_until(ssh, prompt)
+		return output
+	
+def read_until(ssh_connect, prompt, short_sleep=0.2):
 		output = ""
-		ssh.settimeout(3)
+		ssh_connect.settimeout(3)
 		while True:
 			time.sleep(short_sleep)
 			try:
-				part = ssh.recv(100).decode("utf-8")	
+				part = ssh_connect.recv(100).decode("utf-8")	
 			except socket.timeout:
 				break
 			print("/"*70)
@@ -57,7 +62,7 @@ def send_show_command(ip, user, password,
 			output += part	
 			if prompt in output:
 				break
-#		output = output.replace("\r\n", "\n")
+#		output = output.replace("\r\n", "\n")	#for Cisco
 		return output
 
 
