@@ -8,19 +8,15 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
 
 
-def enable_netconf(net_device):
-	print("{} Connecting to {}".format(time.asctime(), net_device['ip']))
-	junos_device = ConnectHandler(**net_device)
-	configure = junos_device.config_mode('configure private')
-	print("{} Applying configuration to {}".format(time.asctime(), net_device['ip']))
-	setssns = junos_device.send_command("set system services netconf ssh")
-#	setssns = junos_device.send_command("show version")
-#	print(setssns)
-	print("{} Commiting configuration to{}".format(time.asctime(), net_device['ip']))
-	junos_device.commit(comment='Enabled NETCONF service', and_quit=True)
-	print("{} Closing connection to{}".format(time.asctime(), net_device['ip']))
-	junos_device.disconnect()
 
+def show_logs(net_device):
+#	print("{} Connecting to {}".format(time.asctime(), net_device['ip']))
+	junos_device = ConnectHandler(**net_device)
+#	setssns = junos_device.send_command("show log messages | except ssh ")
+	setssns = junos_device.send_command("show interfaces ge* | display xml")
+#	print("{} Closing connection to{}".format(time.asctime(), net_device['ip']))
+	return setssns
+	junos_device.disconnect()
 
 def main():
 	in_fl = argv[1]
@@ -36,7 +32,9 @@ def main():
 				'username': user_login,
 				'password': user_pass,
 				}
-			enable_netconf(net_device)
+			logs = show_logs(net_device)
+			print("Connection to - ...", device)
+			print(logs)
 
 if __name__=='__main__':
 	main()

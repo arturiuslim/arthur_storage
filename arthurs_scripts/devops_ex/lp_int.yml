@@ -17,5 +17,5 @@
    - debug:
       msg: "{{ item.stdout_lines }}"
      loop: "{{ response.results }}"
-#    loop_control:
-#      label: "{{ item.invocation,module_args.host }}"
+     loop_control:
+      label: "{{ item.invocation,module_args.host }}"
