@@ -1,0 +1,8 @@
+1: 100
+test: true
+? !!python/tuple
+- 1
+- 2
+: !!python/tuple
+- 100
+- 200
