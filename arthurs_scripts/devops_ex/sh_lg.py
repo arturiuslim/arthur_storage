@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-
+import yaml
 import os
 from sys import argv
 import time
+#import paramiko
 import netmiko
 from getpass import getpass
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthenticationException
-
+#from paramiko.ssh_exception import NoValidConnectionsError
 
 
 def show_logs(net_device):
@@ -17,7 +18,11 @@ def show_logs(net_device):
 			setssns = ssh.send_command("show interfaces ge* terse")
 			return setssns
 			jun_dev.disconnect()
-	except jun_dev.ssh_exception.NetmikoTimeoutException:
+#	except jun_dev.paramiko.ssh_exception.NoValidConnectionsError as error:
+	except paramiko.ssh_exception.NoValidConnectionsError as error:
+		print(f"Was not able to connect to {ip} \n")
+#	except jun_dev.ssh_exception.NetmikoTimeoutException as error:
+	except netmiko.ssh_exception.NetmikoTimeoutException as error:
 	        print(f"Was not able to connect to {ip} \n")
 	except jun_dev.ssh_exception.NetMikoAuthenticationException as error:
 		print(error)
@@ -27,19 +32,10 @@ def show_logs(net_device):
 
 if __name__=='__main__':
 	in_fl = argv[1]
-	user_login = input('Username: ')
-	user_pass = getpass('Password: ')
 	with open(in_fl) as f:
-		device_list = f.read().splitlines()
+		device_list = yaml.safe_load(f)
 		for device in device_list:
-			print(device)
-			net_device = {
-				'device_type': 'juniper',
-				'ip': device,
-				'username': user_login,
-				'password': user_pass,
-				}
-			logs = show_logs(net_device)
+			logs = show_logs(device)
 			print("Connection to - ...", device)
 			print(logs)
 

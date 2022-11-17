@@ -16,7 +16,7 @@ def send_show_command(net_dev, comm):
                         return setssns
                         jun_dev.disconnect()
 	except jun_dev.ssh_exception.NetmikoTimeoutException:
-		print(f"Was not able to connect to {ip} \n")
+		print("="*30, '\n',f"Was not able to connect to {ip} \n", "="*30, '\n')
 	except jun_dev.ssh_exception.NetMikoAuthenticationException as error:
 		print(error)
 	except ValueError as error:
@@ -28,4 +28,4 @@ if __name__=='__main__':
 	with open(in_fl) as f:
 		devices = yaml.safe_load(f)
 	for dev in devices:
-		print(send_show_command(dev, "show interfaces ge-0/0/5 terse"))
+		print(send_show_command(dev, "show system uptime"))
