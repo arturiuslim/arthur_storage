@@ -3,11 +3,6 @@
   username: eartlim
   password: password123
   timeout: 10
-#- device_type: juniper_junos
-#  host: 10.254.254.14
-#  username: eartlim
-#  password: password123
-#  timeout: 10
 - device_type: juniper_junos
   host: 10.254.254.2
   username: eartlim
