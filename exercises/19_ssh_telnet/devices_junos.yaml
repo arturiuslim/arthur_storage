@@ -1,0 +1,18 @@
+- device_type: juniper_junos
+  ip: 10.254.254.1
+  username: 
+  password: cisco
+- device_type: juniper_junos
+  ip: 10.254.254.2
+  username: cisco
+  password: cisco
+- device_type: juniper_junos
+  ip: 10.254.254.254.3
+  username: cisco
+  password: cisco
+- device_type: juniper_junos
+  ip: 10.254.254.254.4
+  username: cisco
+  password: cisco
+
+

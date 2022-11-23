@@ -6,7 +6,7 @@ from netmiko.ssh_exception import NetMikoTimeoutException, NetMikoAuthentication
 
 
 def send_show_command(ip, user, password, command):
-	print(f"Connection to {ip}")
+	print('Connection to', ip)
 	try:
 		with netmiko.ConnectHandler(
 			device_type="juniper_junos", timeout=5,
@@ -15,7 +15,7 @@ def send_show_command(ip, user, password, command):
 			output = ssh.send_command(command)
 			return output
 	except netmiko.ssh_exception.NetmikoTimeoutException:
-		print(f"Was not able to connect to {ip} \n")
+		print('Was not able to connect to', ip, '\n')
 	except netmiko.ssh_exception.NetMikoAuthenticationException as error:
 		print(error)
 	except ValueError as error:
