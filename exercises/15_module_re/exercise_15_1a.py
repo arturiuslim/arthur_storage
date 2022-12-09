@@ -8,11 +8,11 @@ def get_ip_from_cfg(infl):
 #	regexp = r"([.\d]+)"
 	regexp = (
 		r"interface (?P<interface>[\S+]+)\n"
-		r".*?\n{0,3}"
+		r".*?"
 		r"(?P<ip>(\d+\.\d+\.\d+\.\d+) (\d+\.\d+\.\d+\.\d+))"
 	)
 	result_list = {}
-	m_all = re.finditer(regexp, infl)
+	m_all = re.finditer(regexp, infl, re.DOTALL)
 	for m  in m_all:
 		m_dict = (m.groupdict())
 		intr = m_dict.pop("interface")
