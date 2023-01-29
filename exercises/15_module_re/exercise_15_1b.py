@@ -6,18 +6,39 @@ from sys import argv
 
 def get_ip_from_cfg(infl):
 	regexp = (
-		r"(interface [\S+]+)|(ip address \d+\.\d+\.\d+\.\d+ \d+\.\d+\.\d+\.\d+)"
+		r"(interface [\S+]+)|(ip address \d+\.\d+\.\d+\.\d+ \d+\.\d+\.\d+\.\d+)" #////working one
+#			r"interface (?P<interface>[\S+]+)|ip address (?P<ip>\d+\.\d+\.\d+\.\d+ \d+\.\d+\.\d+\.\d+)"
 		)
 	result_list = []
 	with open(infl) as f:
 		for line in f:
 			match = re.search(regexp, line)
 			if match:
+				"""
+				group = match.lastgroup
+				value = match.group(group)
+				print(group)
+				print(value)
+				if group == "interface":
+					print(group)
+					result_list[value] = {}
+					interface = value
+				elif group == "ip":
+					tmp = value.split()
+					value = tuple(tmp)
+					result_list[interface]["ip"] = value
+					print(group)
+
+					print(type(value))
+				"""
+#//////////	Works as a list
 #				print(match.groups())
 				if match.group(1) != None:
 					result_list.append(match.group(1))
-				if match.group(2) != None:
+				elif match.group(2) != None:
 					result_list.append(match.group(2))
+#					result_list.append(match.group(3))
+#/////////////////////////////////////////////////////////////////////////////////
 	return result_list
 
 def main():
