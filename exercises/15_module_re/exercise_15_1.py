@@ -5,15 +5,11 @@ from pprint import pprint
 from sys import argv
 
 def get_ip_from_cfg(infl):
-#	regexp = r"([.\d]+)"
 	regexp = r"(\d+\.\d+\.\d+\.\d+) (\d+\.\d+\.\d+\.\d+)"
 	result_list = []
 	for line in infl.split("\n"):
 		m = re.search(regexp, line)
 		if m:
-#		print("group0: ", m.group(0))
-#		print("group1: ", m.group(1))
-#		print("group2: ", m.group(2))
 			groups = tuple(m.groups())
 			result_list.append(groups)
 	return result_list

@@ -5,7 +5,6 @@ from pprint import pprint
 from sys import argv
 
 def get_ip_from_cfg(infl):
-#	regexp = r"([.\d]+)"
 	regexp = (
 		r"interface (?P<interface>[\S+]+)\n"
 		r".*?"
