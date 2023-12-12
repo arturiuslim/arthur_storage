@@ -6,3 +6,6 @@ https://www.w3schools.com/c/c_exercises.php
 https://www.w3resource.com/c-programming-exercises/
 https://codeforwin.org/c-programming-examples-exercises-solutions-beginners
 
+https://netsim-tools.readthedocs.io/en/latest/install/ubuntu.html
+https://netsim-tools.readthedocs.io/en/latest/install/linux.html
+

@@ -6,6 +6,7 @@ from sys import argv
 
 def get_ip_from_cfg(infl):
 	regexp = r"(\d+\.\d+\.\d+\.\d+) (\d+\.\d+\.\d+\.\d+)"
+#	regexp = r"(\d+\.)+(\d+) (\d+\.)+(\d+)"
 	result_list = []
 	for line in infl.split("\n"):
 		m = re.search(regexp, line)
