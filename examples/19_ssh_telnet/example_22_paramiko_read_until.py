@@ -29,14 +29,16 @@ def send_show_command(ip, user, password,
 		return
 
 	with cl.invoke_shell() as ssh:
-		"""
 		#This part is for Cisco
 		ssh.send("enable\n")
-		ssh.send(f"{enable_password}\n")
+		ssh.send(f"{password}\n")
 		time.sleep(short_sleep)
 		ssh.send("terminal length 0\n")
-		output. = ssh.recv(max_read).decode("utf-8")
-		prompt = re.recv(r"\S+#", output).group()
+		output = ssh.recv(max_read).decode("utf-8")
+		prompt = re.search(r"\S+#", output).group()
+		ssh.send(f"{command}\n")
+		output = read_until(ssh, prompt)
+		return output
 		"""
 		ssh.send("\n")
 		time.sleep(long_sleep)
@@ -47,7 +49,7 @@ def send_show_command(ip, user, password,
 		ssh.send(f"{command}\n")
 		output = read_until(ssh, prompt)
 		return output
-	
+                 """	
 def read_until(ssh_connect, prompt, short_sleep=0.2):
 		output = ""
 		ssh_connect.settimeout(3)
@@ -70,10 +72,12 @@ if __name__ == "__main__":
         u_login = input("username: ")
         u_passwd = getpass("Password: ")
 #        ip_list = ["10.254.254.1", "10.254.254.2", "10.254.254.3", "10.254.254.1"]
-        ip_list = [ "10.254.254.3", "10.254.254.1"]
+#        ip_list = [ "10.254.254.3", "10.254.254.1"]
+        ip_list = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
         for ip in ip_list:
 #                out = send_show_command(ip, u_login, u_passwd, "show interfaces terse | no-more")
-                out = send_show_command(ip, u_login, u_passwd, "ping 10.254.254.1 count 5")
+#                out = send_show_command(ip, u_login, u_passwd, "ping 10.254.254.1 count 5")
+                out = send_show_command(ip, u_login, u_passwd,  "ping 192.168.100.100")
                 #pprint(out, width=120)
                 print("="*50)
                 print(f"Checking {ip}")
